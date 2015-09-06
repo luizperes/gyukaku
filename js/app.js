@@ -1,6 +1,8 @@
 GKManagerApp.run(['$rootScope', '$window', 'authService', function($rootScope, $window, authService) {
 
     $rootScope.user = {};
+    $rootScope.isLogged = false;
+    $rootScope.accessToken = "";
 
     $window.fbAsyncInit = function() {
       FB.init({

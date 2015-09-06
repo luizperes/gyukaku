@@ -5,9 +5,21 @@ angular.module('GKManagerApp')
     var authService = {};
 
     authService.fblogin = function() {
+      var _self = this;
       FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-          // You can now do what you want with the data fb gave you.
+          FB.api('/me', {fields: "id,name,picture"}, function(res) {
+            $rootScope.$apply(function() {
+              $rootScope.user = _self.user = res;
+              console.info($rootScope.user);
+            });
+          });
+
+          $rootScope.$apply(function() {
+            $rootScope.accessToken = response.authResponse.accessToken;
+            $rootScope.isLogged = true;
+          });
+
           console.info(response);
         }
       });
@@ -16,16 +28,10 @@ angular.module('GKManagerApp')
     authService.watchLoginChange = function() {
       var _self = this;
       FB.Event.subscribe('auth.authResponseChange', function(res) {
-        if (res.status === 'connected') {
-          FB.api('/me', function(res) {
-            $rootScope.$apply(function() {
-              $rootScope.user = _self.user = res;
-              authService.fblogin();
-              console.info($rootScope.user);
-            });
-          });
+        if (res.status === 'connected')
+        {
+          authService.fblogin();
         } else {
-          console.info('logged out from facebook.');
           authService.logout();
         }
       });
@@ -36,10 +42,13 @@ angular.module('GKManagerApp')
       FB.getLoginStatus(function(response) {
         if (response && response.status !== 'connected')
         {
-                $rootScope.$apply(function() {
-                  $rootScope.user = _self.user = {};
-                });
-                console.info($rootScope.user);
+          $rootScope.$apply(function() {
+            $rootScope.user = _self.user = {};
+            $rootScope.accessToken = "";
+            $rootScope.isLogged = false;
+          });
+
+          console.info('logged out from facebook.');
         }
       });
     }
