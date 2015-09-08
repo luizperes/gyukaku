@@ -24,11 +24,18 @@ GKManagerApp.run(['$rootScope', '$window', 'authService', function($rootScope, $
      }(document, 'script', 'facebook-jssdk'));
 
   }
-  ]).config(['$routeProvider',
-  function($routeProvider) {
+]).config(['$routeProvider',
+  function($routeProvider, authCtrl) {
     $routeProvider
       .when('/', {
-        templateUrl: 'js/views/index-partial.html'
+        templateUrl: 'js/views/index-partial.html',
+        controller: authCtrl
+      }).when('/luiz', {
+        templateUrl: 'js/views/luiz-partial.html',
+        controller: authCtrl
+      }).
+      otherwise({
+        redirectTo: '/'
       });
   }
 
