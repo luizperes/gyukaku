@@ -1,0 +1,40 @@
+body {
+  min-height: 2000px;
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
+}
+
+.navbar-img{
+  float: left;
+}
+
+.img-top
+{
+  height: 50px;
+}
+
+.img-top-fb
+{
+  height: 35px;
+}
+
+.navbar-brand{
+  padding-left: 25px;
+}
+
+.navbar-header, .nav-login-btn
+{
+  position: relative;
+  top: 10px;
+}
+
+.navbar-height{
+  height: 65px;
+}
+
+.dropdown-user-name{
+  display: inline-block;
+  padding: 3px 20px;
+}

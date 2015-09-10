@@ -11,7 +11,8 @@ angular.module('GKManagerApp')
           FB.api('/me', {fields: "id,name,picture,email"}, function(res) {
             $rootScope.$apply(function() {
               $rootScope.user = _self.user = res;
-              console.info($rootScope.user);
+              if ($rootScope.isDebugging)
+                console.info($rootScope.user);
             });
           });
 
@@ -20,7 +21,8 @@ angular.module('GKManagerApp')
             $rootScope.isLogged = true;
           });
 
-          console.info(response);
+          if ($rootScope.isDebugging)
+            console.info(response);
         }
       });
     }
@@ -48,10 +50,25 @@ angular.module('GKManagerApp')
             $rootScope.isLogged = false;
           });
 
-          console.info('logged out from facebook.');
+          if ($rootScope.isDebugging)
+            console.info('logged out from facebook.');
         }
       });
     }
+
+    authService.doLogin = function() {
+      FB.login(function(response) {
+        if ($rootScope.isDebugging)
+          console.log("did log in");
+      }, {scope: 'email'});
+    };
+
+    authService.doLogout = function() {
+      FB.logout(function(response) {
+        if ($rootScope.isDebugging)
+          console.log("did log out");
+      });
+    };
 
     return authService;
   }

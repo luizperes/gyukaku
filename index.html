@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel and Angular Comment System</title>
+    <title>Gyu Kaku System</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> <!-- load bootstrap via cdn -->
@@ -13,6 +13,7 @@
 
     <!-- JS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>
 
@@ -26,7 +27,56 @@
   </head>
   <body ng-app="GKManagerApp">
 
+    <!-- Static navbar -->
+    <div ng-controller="authCtrl">
+      <nav class="navbar navbar-default navbar-static-top navbar-height">
+        <div class="container">
+          <div class="navbar-header">
+            <img class="navbar-img img-top" src="//static.wixstatic.com/media/3e1534_c1aed01cf3504816bc778fa94a873779.jpg_srz_p_60_80_75_22_0.50_1.20_0.00_jpg_srz" />
+            <a class="navbar-brand" href="#">Gyu Kaku System</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-if="!isLogged" class="nav-login-btn">
+                <a href="#" ng-click="doLogin()">Log In</a>
+              </li>
+              <li ng-if="isLogged" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="img-circle img-top-fb" ng-src="{{ user.picture.data.url }}"/> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header">Logged as</li>
+                  <li><span class="dropdown-user-name">{{ user.name }}</span></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Options</li>
+                  <li><a href="#">Shift Avaibility</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#" ng-click="doLogout()">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+
     <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!--div class="container">
       <div class="row vertical-align ">
         <div class="col-sm-8">
           <img src="//static.wixstatic.com/media/3e1534_c1aed01cf3504816bc778fa94a873779.jpg_srz_p_60_80_75_22_0.50_1.20_0.00_jpg_srz" />
@@ -46,6 +96,6 @@
           <div ng-view class="view-frame"></div>
         </div>
       </div>
-    </div>
+    </div-->
   </body>
 </html>
