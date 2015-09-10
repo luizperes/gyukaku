@@ -1,11 +1,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel and Angular Comment System</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> <!-- load bootstrap via cdn -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+    <!-- My CSSs -->
+    <link rel="stylesheet" type="text/css" href="js/resources/style/main.css">
 
     <!-- JS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -20,10 +24,28 @@
     <script src="js/app.js"></script>
 
   </head>
-  <body>
-    <div ng-app="GKManagerApp">
-      <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
-      <div ng-view class="view-frame"></div>
+  <body ng-app="GKManagerApp">
+
+    <div class="container">
+      <div class="row vertical-align ">
+        <div class="col-sm-8">
+          <img src="//static.wixstatic.com/media/3e1534_c1aed01cf3504816bc778fa94a873779.jpg_srz_p_60_80_75_22_0.50_1.20_0.00_jpg_srz" />
+        </div>
+        <div class="col-sm-1">
+          <img ng-if="isLogged" ng-src="{{ user.picture.data.url }}"/>
+        </div>
+        <div class="col-sm-2">
+          <span ng-if="isLogged"> {{ user.name }} </span>
+        </div>
+        <div class="col-sm-1">
+          <div class="fb-login-button" scope="email" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div ng-view class="view-frame"></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -8,7 +8,7 @@ angular.module('GKManagerApp')
       var _self = this;
       FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-          FB.api('/me', {fields: "id,name,picture"}, function(res) {
+          FB.api('/me', {fields: "id,name,picture,email"}, function(res) {
             $rootScope.$apply(function() {
               $rootScope.user = _self.user = res;
               console.info($rootScope.user);
