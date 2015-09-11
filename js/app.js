@@ -3,7 +3,7 @@ GKManagerApp.run(['$rootScope', '$window', 'authService', function($rootScope, $
     $rootScope.user = {};
     $rootScope.isLogged = false;
     $rootScope.accessToken = "";
-    $rootScope.isDebugging = false;
+    $rootScope.isDebugging = true;
 
     $window.fbAsyncInit = function() {
       FB.init({
@@ -26,14 +26,14 @@ GKManagerApp.run(['$rootScope', '$window', 'authService', function($rootScope, $
 
   }
 ]).config(['$routeProvider',
-  function($routeProvider, authCtrl) {
+  function($routeProvider, authCtrl, userCtrl) {
     $routeProvider
       .when('/', {
         templateUrl: 'js/views/index-partial.html',
         controller: authCtrl
       }).when('/luiz', {
-        templateUrl: 'js/views/luiz-partial.html',
-        controller: authCtrl
+        templateUrl: 'js/views/user-partial.html',
+        controller: userCtrl
       }).
       otherwise({
         redirectTo: '/'
