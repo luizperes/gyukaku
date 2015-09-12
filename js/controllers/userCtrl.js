@@ -1,7 +1,7 @@
 angular.module('GKManagerApp')
-  .controller('userCtrl', ['$scope', '$rootScope', 'userService',
+  .controller('userCtrl', ['$scope', '$rootScope', '$location', 'userService',
 
-    function($scope, $rootScope, userService)
+    function($scope, $rootScope, $location, userService)
     {
       $scope.userServiceData = {};
 
@@ -11,6 +11,7 @@ angular.module('GKManagerApp')
           userService.get().then(function(d) {
             $scope.userServiceData = d.data.user;
           });
+        
         }
         else
         {
@@ -28,6 +29,9 @@ angular.module('GKManagerApp')
         userService.save();
       };
 
+      $scope.redirectToMain = function(){
+        $location.path('/').replace();
+      };
     }
 
 ]);

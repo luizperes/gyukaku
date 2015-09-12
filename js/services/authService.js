@@ -1,7 +1,7 @@
 angular.module('GKManagerApp')
-  .factory("authService", ['$rootScope',
+  .factory("authService", ['$rootScope', 'generalDataService',
 
-  function($rootScope) {
+  function($rootScope, generalDataService) {
     var authService = {};
 
     authService.fblogin = function() {
@@ -14,6 +14,12 @@ angular.module('GKManagerApp')
               if ($rootScope.isDebugging)
                 console.info($rootScope.user);
             });
+          });
+
+          generalDataService.get().then(function(d){
+              $rootScope.generalData = d.data;
+              if ($rootScope.isDebugging)
+                console.info(d);
           });
 
           $rootScope.$apply(function() {
@@ -48,6 +54,7 @@ angular.module('GKManagerApp')
             $rootScope.user = _self.user = {};
             $rootScope.accessToken = "";
             $rootScope.isLogged = false;
+            $rootScope.generalData = {};
           });
 
           if ($rootScope.isDebugging)

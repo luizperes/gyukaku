@@ -1,6 +1,7 @@
 GKManagerApp.run(['$rootScope', '$window', 'authService', function($rootScope, $window, authService) {
 
     $rootScope.user = {};
+    $rootScope.generalData = {};
     $rootScope.isLogged = false;
     $rootScope.accessToken = "";
     $rootScope.isDebugging = true;

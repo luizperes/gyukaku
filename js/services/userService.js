@@ -7,7 +7,8 @@ angular.module('GKManagerApp')
     return {
         // get all the comments
         get : function() {
-            console.log(addressPublicFolder + '/users/' + $rootScope.accessToken);
+            if ($rootScope.isDebugging)
+              console.log(addressPublicFolder + '/users/' + $rootScope.accessToken);
             return $http.get(addressPublicFolder + '/users/' + $rootScope.accessToken).
             then(function(response){
               if ($rootScope.isDebugging)
@@ -18,7 +19,8 @@ angular.module('GKManagerApp')
 
         // save a comment (pass in comment data)
         save : function() {
-            console.log(addressPublicFolder + '/users');
+            if ($rootScope.isDebugging)
+              console.log(addressPublicFolder + '/users');
             return $http.post(addressPublicFolder + '/users',
                     {"fb_access_token" : $rootScope.accessToken, "id_role" : "2", 'id_location' : '1'}).
                     then(function(response) {

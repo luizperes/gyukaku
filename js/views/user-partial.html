@@ -1,4 +1,7 @@
 <div ng-controller="userCtrl">
+  <div ng-if="!isLogged">
+    {{redirectToMain()}}
+  </div>
   <div ng-if="user == 'createNewUser'">
     uhul
   </div>
