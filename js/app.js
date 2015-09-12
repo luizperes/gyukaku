@@ -31,7 +31,7 @@ GKManagerApp.run(['$rootScope', '$window', 'authService', function($rootScope, $
       .when('/', {
         templateUrl: 'js/views/index-partial.html',
         controller: authCtrl
-      }).when('/luiz', {
+      }).when('/userSchedule', {
         templateUrl: 'js/views/user-partial.html',
         controller: userCtrl
       }).

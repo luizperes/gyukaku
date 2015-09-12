@@ -8,7 +8,12 @@ angular.module('GKManagerApp')
         // get all the comments
         get : function() {
             console.log(addressPublicFolder + '/users/' + $rootScope.accessToken);
-            return $http.get(addressPublicFolder + '/users/' + $rootScope.accessToken);
+            return $http.get(addressPublicFolder + '/users/' + $rootScope.accessToken).
+            then(function(response){
+              if ($rootScope.isDebugging)
+                console.info(response);
+              return response;
+            });
         },
 
         // save a comment (pass in comment data)
