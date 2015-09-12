@@ -2,10 +2,26 @@
   <div ng-if="!isLogged">
     {{redirectToMain()}}
   </div>
-  <div ng-if="user == 'createNewUser'">
-    uhul
+  <div ng-if="userServiceData == 'createNewUser'">
+
+    <form class="form-inline" ng-submit="save(id_location, id_role)">
+      <h3>What's your position?</h3>
+    <div class="form-group">
+      <label for="select_id_role" class="control-label">Position:</label>
+      <select id="select_id_role" ng-model="id_role">
+         <option ng-if="obj.id != 1" ng-repeat="obj in generalData.roles" value="{{obj.id}}">{{obj.role}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="select_id_location" class="control-label">Location:</label>
+      <select id="select_id_location" ng-model="id_location">
+         <option ng-repeat="obj in generalData.locations" value="{{obj.id}}">{{obj.location}}</option>
+      </select>
+    </div>
+    <button class="btn btn-default">Update Profile</button>
+  </form>
   </div>
-  <div ng-if="user != 'createNewUser'">
-    uhul 2
+  <div ng-if="userServiceData != 'createNewUser' && userServiceData != {}">
+
   </div>
 </div>

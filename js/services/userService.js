@@ -18,16 +18,17 @@ angular.module('GKManagerApp')
         },
 
         // save a comment (pass in comment data)
-        save : function() {
+        save : function(id_location, id_role) {
             if ($rootScope.isDebugging)
               console.log(addressPublicFolder + '/users');
             return $http.post(addressPublicFolder + '/users',
-                    {"fb_access_token" : $rootScope.accessToken, "id_role" : "2", 'id_location' : '1'}).
+                    {"fb_access_token" : $rootScope.accessToken, "id_role" : id_role, 'id_location' : id_location}).
                     then(function(response) {
                       // this callback will be called asynchronously
                       // when the response is available
                       if ($rootScope.isDebugging)
                         console.info(response);
+                      return response;
                     }, function(response) {
                       // called asynchronously if an error occurs
                       // or server returns response with an error status.

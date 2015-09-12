@@ -4,6 +4,8 @@ angular.module('GKManagerApp')
     function($scope, $rootScope, $location, userService)
     {
       $scope.userServiceData = {};
+      $scope.id_location = 1;
+      $scope.id_role = 2;
 
       $rootScope.$watch('isLogged', function() {
         if ($rootScope.isLogged)
@@ -11,7 +13,6 @@ angular.module('GKManagerApp')
           userService.get().then(function(d) {
             $scope.userServiceData = d.data.user;
           });
-        
         }
         else
         {
@@ -25,8 +26,13 @@ angular.module('GKManagerApp')
         });
       };
 
-      $scope.save = function() {
-        userService.save();
+      $scope.save = function(id_location, id_role) {
+        userService.save(id_location, id_role).then(function(d){
+          if(d.data.success)
+          {
+            $scope.get();
+          }
+        });
       };
 
       $scope.redirectToMain = function(){
